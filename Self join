@@ -1,0 +1,36 @@
+SELF JOIN : - self join is a regular join in which a table is joined to itself . self join is powerful for comparing values in a column of rows with the same table . 
+Syntax : - 
+SELECT  column_name(s)
+From table1  AS t1
+Join table1 as t2 
+ON t1. Col_name = t2.Col_name;
+Table1 = table name
+Table Employee
+
+emp_id       emp_name       managerid
+     1         Ankit           NULL
+     2         Vikas            1
+    3          Monu             1
+    4          Anisha           2
+    5          David            2
+
+
+emp_id: Unique ID for each employee.
+emp_name: Name of the employee.
+manager_id: The ID of the employee's manager (references emp_id). If manager_id is NULL, the employee has no manager
+
+Find the Name of Employees Who Have a Manager
+SELECT e.emp_name AS Employee, m.emp_name AS Manager
+FROM Employees e
+JOIN Employees m ON e.manager_id = m.emp_id;
+
+
+Find All Employees, Including Those Without a Manager
+SELECT e.emp_name AS Employee, m.emp_name AS Manager
+FROM Employees e
+LEFT JOIN Employees m ON e.manager_id = m.emp_id;
+
+
+
+a self-join in SQL works as an inner join when no LEFT JOIN or RIGHT JOIN is specified.
+If we want to include all rows, even when there is no match (e.g., employees without a manager), we need to use a LEFT JOIN.
