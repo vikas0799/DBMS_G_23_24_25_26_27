@@ -1,0 +1,22 @@
+UNION : - The UNION operator combines the result sets of two or more SELECT statements. It removes duplicate rows from the result set by default. 
+
+Syntax :- SELECT column1, column2, ...
+FROM table1
+UNION
+SELECT column1, column2, ...
+FROM table2;
+
+To include duplicates, we can use UNION ALL.
+Syntax :- SELECT column1, column2, ...
+FROM table1
+UNION ALL
+SELECT column1, column2, ...
+FROM table2;
+
+INTERSECT
+The INTERSECT operator returns the common rows from the result sets of two or more SELECT statements. Only rows that appear in both result sets are included.
+Syntax : - SELECT column1, column2, ...
+FROM table1
+INTERSECT
+SELECT column1, column2, ...
+FROM table2;
