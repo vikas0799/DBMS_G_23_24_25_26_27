@@ -1,0 +1,63 @@
+Stored procedure using parameter : - 
+IN parameter
+Example : - Retrieve Employees from a Specific Department id 101
+DELIMITER $$
+
+CREATE PROCEDURE get_employees_by_department(IN dept_id int)
+BEGIN
+    SELECT * FROM employees WHERE department_id = dept_id;
+END $$
+
+DELIMITER ;
+CALL get_employees_by_department(101);
+
+OUT parameter : - 
+Example find the total salary of the employees : 
+DELIMITER $$
+
+CREATE PROCEDURE get_total_salaries(OUT total_salary INT)
+BEGIN
+    SELECT SUM(salary) as total_salary FROM employees;
+END $$
+
+DELIMITER ;
+CALL get_total_salaries(@total);
+SELECT @total;
+
+INOUT Keyword : - INOUT keyword is used in stored procedures to define a parameter that acts both as an input (receiving a value) and as an output (returning a value).
+Syntax : - 
+CREATE PROCEDURE procedure_name(INOUT param_name datatype)
+BEGIN
+    -- SQL Statements
+END;
+Example : - 
+Write a stored procedure named adjust_salary that adds a bonus 50000 to the salary of employees who belong to department_id = 101. After updating the salaries, return the average salary of all employees in the table.
+
+DELIMITER $$
+
+CREATE PROCEDURE adjust_salariesss(INOUT avg_salary INT , IN bonus INT)
+BEGIN
+    -- Increase the employee's salary by the bonus amount
+    update employees set salary=salary +bonus where department_id=101;
+    select avg(salary) from employees;
+END $$
+
+DELIMITER ;
+call adjust_salariesss(@avg_salary,50000);
+
+Variables in Mysql : - Variable is an object that can hold a single data value of a specific type.
+Types of SQL variables : -
+Local Variables : -   A user declares the local variable . By default  a local variable starts with @ .
+
+Global Variables : - the system maintains the global variables.  A user can not declare them. A global variable starts with @@.
+How to declare a variable in sql : - 
+Variable declaration : - using declare keyword
+     Declare @variablename datatype;
+And Initialize using SET or SELECT
+SET @variablename = value; OR
+SELECT @variablename=value;
+
+
+
+How to list procedure
+SHOW PROCEDURE STATUS WHERE Db = 'your_database_name';
